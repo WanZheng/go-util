@@ -37,6 +37,7 @@ func proxyResponse(w http.ResponseWriter, r *http.Request, resp *http.Response) 
 	for k, v := range resp.Header {
 		header[k] = v
 	}
+	w.WriteHeader(resp.StatusCode)
 
 	_, err := io.Copy(w, resp.Body)
 	return err
